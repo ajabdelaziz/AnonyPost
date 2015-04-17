@@ -5,7 +5,7 @@
   <title>Topic by {{author}}</title>
 </head>
 <body>
-<a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
+<a>{{topic}} - {{votes}} - {{location}} - {{author}}</a>
 <form method="POST" action="/topics/{{topicID}}?_method=PUT">
 <input type="text" name="topic" value="{{topic}}">
 <!-- mustaches the values for names -->
@@ -15,5 +15,6 @@
 </form>
 <form method="POST" action="/topics/{{topicID}}?_method=DELETE">
 <button type="submit">Delete</button>
+<a href='/topics/{{topicID}}/comments/new'>Create new comment</a>
 </body>
 </html>

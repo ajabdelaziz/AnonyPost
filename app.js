@@ -28,8 +28,6 @@ app.get('/topics', function(req, res) {
 app.get('/topics/:id/comments', function (req, res){
   var template = fs.readFileSync('./views/comments.html', 'utf8');
 
-  db.run('PRAGMA foreign_keys = ON;')
-
   db.all('SELECT * FROM comments WHERE trackTopic = ' + req.params.id + ";", {}, function(err, comments) {
     console.log(comments)
     var html = Mustache.render(template, {allComments: comments});
@@ -42,13 +40,20 @@ app.get('/topics/new', function(req,res){
 })
 
 app.get('/topics/:id/comments/new', function(req,res){
-    res.send(fs.readFileSync('./views/newComment.html', 'utf8'))
+  var id = req.params.id
+  var page = Mustache.render(fs.readFileSync('./views/newComment.html', 'utf8'), {id: id})
+  res.send(page)
 })
+
+// app.get('/topic/:id/comments'{
+//   res.send(fs.readFileSync('./comments.html'))
+// }
 
 app.post('/topics/:id/comments', function(req, res){
     db.run('PRAGMA foreign_keys = ON;')
-    db.run("INSERT INTO comments (commentID, entry, author, location, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + req.body.location + "', '" + req.params.id + "');")
-    console.log(req.body.author)
+    var id = req.params.id
+    console.log(req.params.id)
+    db.run("INSERT INTO comments (commentID, entry, author, location, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + req.body.location + "', " + id + ");")
     // res.send("You have posted a new comment")
     res.redirect("/topics")
 })
@@ -79,6 +84,10 @@ app.get('/topics/:id', function(req,res){
     })
   })
 });
+
+app.get('/topics/:id/comments/new', function(req,res){
+    res.send(fs.readFileSync('./views/newComment.html', 'utf8'))
+})
 
 
 app.delete('/topics/:id', function(req,res){
