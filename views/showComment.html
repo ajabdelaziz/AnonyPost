@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>Comment by {{author}}</title>
+</head>
+<body>
+<a href ="/topics/{{topicID}}/comments/{{commentID}}">{{entry}} - {{author}} - {{location}}</a>
+<form method="POST" action="/topics/{{topicID}}comments/{{commentID}}?_method=PUT">
+<input type="text" name="entry" value="{{entry}}">
+<input type="text" name="author" value="{{author}}">
+<input type="text" name="location" value="{{locationr}}">
+<button type="submit">Update</button>
+</form>
+<form method="POST" action="/topics/{{topicID}}/comment/{{commentID}}?_method=DELETE">
+<button type="submit">Delete</button>
+</body>
+</html>

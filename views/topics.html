@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All ze Topics</title>
+</head>
+<body>
+  <a href='/topics/new'>Create new topics</a>
+
+  <ul>
+    {{#allTopics}}
+      <li><a href ="/topics/{{topicID}}">{{topic}} - {{votes}} - {{location}} - {{author}}</a></li>
+    {{/allTopics}}
+  </ul>
+</body>
+</html>

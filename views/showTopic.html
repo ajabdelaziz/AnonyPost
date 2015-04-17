@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>Topic by {{author}}</title>
+</head>
+<body>
+<a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
+<form method="POST" action="/topics/{{topicID}}?_method=PUT">
+<input type="text" name="topic" value="{{topic}}">
+<!-- mustaches the values for names -->
+<input type="text" name="location" value="{{location}}">
+<input type="text" name="author" value="{{author}}">
+<button type="submit">Update</button>
+</form>
+<form method="POST" action="/topics/{{topicID}}?_method=DELETE">
+<button type="submit">Delete</button>
+</body>
+</html>
