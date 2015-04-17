@@ -5,11 +5,10 @@
   <title>All ze Topics</title>
 </head>
 <body>
-  <a href='/topics/{{topicID}}/comments/new'>Create new comment</a>
-
+<h1> All ze Topics </h1>
   <ul>
     {{#allComments}}
-      <li><a href ="/topics/{{topicID}}/comments/{{commentID}}">{{entry}} - {{author}} - {{location}}</a></li>
+      <li><a>{{entry}} - {{author}} - {{location}}</a></li>
     {{/allComments}}
   </ul>
 
