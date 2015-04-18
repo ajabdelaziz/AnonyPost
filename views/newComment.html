@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
   <title>Jakes Topics!</title>
+  <script src="lib/marked.js"></script> 
 </head>
 <h1> Comment!</h1> 
 <body>
-<form action="/topics/{{id}}/comments" method="POST">
+<div id="content"></div>
+<form action="/topics/{{{id}}}/comments" method="POST">
 <label>
   Comment:
   <input type="text" name="entry"/>
@@ -17,5 +19,9 @@
 </label>
 <button> Post new Comment</button>
 </form>
+<script>
+    document.getElementById('content').innerHTML =
+      marked('# Marked in browser\n\nRendered by **marked**.');
+  </script>
 </body>
 </html>

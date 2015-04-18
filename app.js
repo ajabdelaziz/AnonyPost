@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser')
 var methodOverride =require('method-override')
 var request = require('request')
+var marked = require('marked');
 
 var db = new sqlite3.Database('./forum.db');
 var app = express();
@@ -17,6 +18,17 @@ var geocoder = {
                 url: "http://ipinfo.io/json"
   };
 
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
 
 app.get('/', function (req, res) {
   res.send(fs.readFileSync('./views/index.html', 'utf8'));
@@ -25,7 +37,7 @@ app.get('/', function (req, res) {
 app.get('/topics', function (req, res) {
   var template = fs.readFileSync('./views/topics.html', 'utf8');
   
-  db.all('SELECT * FROM topics;', function (err, topics) {
+  db.all('SELECT * FROM topics ORDER BY votes DESC;', function (err, topics) {
     var html = Mustache.render(template, {allTopics: topics});
     res.send(html);
   })
@@ -51,7 +63,7 @@ app.get('/topics/new', function (req,res) {
 app.get('/topics/:id/comments/new', function (req,res) {
   var id = req.params.id
   var page = Mustache.render(fs.readFileSync('./views/newComment.html', 'utf8'), {id: id})
-  res.send(page)
+  res.send(marked(page))
 })
 
 
