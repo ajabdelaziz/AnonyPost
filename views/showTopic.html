@@ -6,14 +6,7 @@
 </head>
 <body>
 <a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
-<form method="POST" action="/topics/{{topicID}}?_method=PUT">
-<input type="text" name="topic" value="{{topic}}">
-<input type="text" name="location" value="{{location}}">
-<input type="text" name="author" value="{{author}}">
-<button type="submit">Update</button>
-</form>
-<form method="POST" action="/topics/{{topicID}}?_method=DELETE">
-<button type="submit">Delete</button>
+<a href ="/topics/{{topicID}}/edit">Edit topic</a>
 <a href='/topics/{{topicID}}/comments/new'>Create new comment</a>
 </body>
 </html>
