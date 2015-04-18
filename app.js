@@ -5,12 +5,18 @@ var Mustache = require('mustache');
 var morgan = require('morgan');
 var bodyParser = require('body-parser')
 var methodOverride =require('method-override')
+var request = require('request')
 
 var db = new sqlite3.Database('./forum.db');
 var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'))
+
+var geocoder = {
+                url: "http://ipinfo.io/json"
+  };
+
 
 app.get('/', function (req, res){
   res.send(fs.readFileSync('./views/index.html', 'utf8'));
@@ -37,24 +43,34 @@ app.get('/topics/new', function (req,res){
     res.send(fs.readFileSync('./views/newTopic.html', 'utf8'))
 })
 
+//marked needed
 app.get('/topics/:id/comments/new', function (req,res){
   var id = req.params.id
   var page = Mustache.render(fs.readFileSync('./views/newComment.html', 'utf8'), {id: id})
   res.send(page)
 })
 
+
 app.post('/topics/:id/comments', function (req, res){
     db.run('PRAGMA foreign_keys = ON;')
     var id = req.params.id
-    console.log(req.params.id)
-    db.run("INSERT INTO comments (commentID, entry, author, location, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + req.body.location + "', " + id + ");")
+  request.get(geocoder, function (error, response, body){
+    var parsed = JSON.parse(body)
+    var parsedLocation = parsed.region
+    db.run("INSERT INTO comments (commentID, entry, author, location, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + parsedLocation + "', " + id + ");")
     res.redirect("/topics")
+})
 })
 
 
 app.post('/topics', function(req, res){
-    db.run("INSERT INTO topics (topicID, topic, votes, location, author) VALUES ( NULL, '" + req.body.topic + "', '0' , '" + req.body.location + "', '" + req.body.author + "');")
-    res.redirect("/topics")
+
+  request.get(geocoder, function (error, response, body){
+    var parsed = JSON.parse(body)
+    var parsedLocation = parsed.region
+        db.run("INSERT INTO topics (topicID, topic, votes, location, author) VALUES ( NULL, '" + req.body.topic + "', '0' , '" + parsedLocation + "', '" + req.body.author + "');")
+  })
+  res.redirect("/topics")
 })
 
 app.get('/topics/:topicid/comment/:commentid', function (req,res){
@@ -80,7 +96,7 @@ app.delete('/topics/:id', function (req,res){
   res.redirect("/topics")
 })
 
-
+//marked needed
 app.put('/topics/:id/', function (req, res){
   var topicInfo = req.body;
   db.run("UPDATE topics SET topic ='" + topicInfo.topic + "', location = '" + topicInfo.location + "', author = '" + topicInfo.author + "' WHERE topicID = '" + req.params.id + "';")
