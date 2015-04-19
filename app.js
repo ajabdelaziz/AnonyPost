@@ -44,6 +44,17 @@ app.get('/topics', function (req, res) {
 
 });
 
+app.get('/topics/comments', function (req, res) {
+  var template = fs.readFileSync('./views/byComments.html', 'utf8');
+  
+  db.all('SELECT * FROM topics LEFT OUTER JOIN comments WHERE topicID = trackTopic GROUP BY topic ORDER BY entry DESC;', function (err, topics) {
+    var html = Mustache.render(template, {allTopics: topics});
+    res.send(html);
+  })
+
+});
+
+
 app.get('/topics/:id/comments', function (req, res) {
   var template = fs.readFileSync('./views/comments.html', 'utf8');
   
@@ -63,7 +74,7 @@ app.get('/topics/new', function (req,res) {
 app.get('/topics/:id/comments/new', function (req,res) {
   var id = req.params.id
   var page = Mustache.render(fs.readFileSync('./views/newComment.html', 'utf8'), {id: id})
-  res.send(marked(page))
+  res.send(page)
 })
 
 
