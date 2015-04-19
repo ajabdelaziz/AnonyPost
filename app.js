@@ -93,7 +93,7 @@ app.post('/topics/:id/comments', function (req, res) {
 })
 
 
-app.post('/topics', function(req, res){
+app.post('/topics', function (req, res) {
 
   request.get(geocoder, function (error, response, body) {
     var parsed = JSON.parse(body)
@@ -103,6 +103,12 @@ app.post('/topics', function(req, res){
   })
 
   res.redirect("/topics")
+})
+
+app.put('/topics/:id/votes', function (req,res) {
+
+   db.run("UPDATE topics SET votes = votes + 1 WHERE topicID = " + req.params.id + ";")
+   res.redirect('/topics')
 })
 
 app.get('/topics/:topicid/comment/:commentid', function (req,res) {

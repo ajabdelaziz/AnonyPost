@@ -11,6 +11,8 @@
   <ul>
     {{#allTopics}}
       <li><a href ="/topics/{{topicID}}">{{topic}} - {{votes}} - {{location}} - {{author}}</a></li>
+      <form method="POST" action="/topics/{{topicID}}/votes?_method=PUT"> 
+      <button type="submit">Vote</button></form>
     {{/allTopics}}
   </ul>
 </body>
