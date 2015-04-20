@@ -5,8 +5,31 @@
   <title>Topic by {{author}}</title>
 </head>
 <body>
-<a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
-<a href ="/topics/{{topicID}}/edit">Edit topic</a>
-<a href='/topics/{{topicID}}/comments/new'>Create new comment</a>
+
+<table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+<tr>
+<td><table width="100%" border="0" cellpadding="3" cellspacing="1" bordercolor="1" bgcolor="#FFFFFF">
+<tr>
+<td bgcolor="#F8F7F1"><strong>{{topic}}</strong></td>
+</tr>
+
+<tr>
+<td bgcolor="#F8F7F1">{{votes}}</td>
+</tr>
+
+<tr>
+<td bgcolor="#F8F7F1"><strong>By :</strong> {{author}}</strong><? echo $rows['email'];?></td>
+</tr>
+
+<tr>
+<td bgcolor="#F8F7F1"><strong>{{location}}</td>
+</tr>
+</table></td>
+</tr>
+</table>
+<BR>
+<center><a href ="/topics/{{topicID}}/edit">Edit topic</a></center>
+<center><a href='/topics/{{topicID}}/comments/new'>Create new comment</a></center>
+<center><a href ="/topics/{{topicID}}/comments">Show Comments</a></center>
 </body>
 </html>

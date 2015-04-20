@@ -5,12 +5,33 @@
   <title>All ze Topics</title>
 </head>
 <body>
-  <a href='/topics/new'>Create new topics</a>
+ <table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+<tr>
+<td width="53%" align="center" bgcolor="#E6E6E6"><strong>Topic</strong></td>
+<td width="15%" align="center" bgcolor="#E6E6E6"><strong>Votes</strong></td>
+<td width="13%" align="center" bgcolor="#E6E6E6"><strong>Location</strong></td>
+<td width="13%" align="center" bgcolor="#E6E6E6"><strong>Last Reply</strong></td>
+<td width="13%" align="center" bgcolor="#E6E6E6"><strong>Vote</strong></td>
+</tr>
 
-  <ul>
-    {{#allTopics}}
-      <li><a href ="/topics/{{topicID}}">{{topic}} - {{votes}} - {{location}} - {{author}}</a></li>
-    {{/allTopics}}
+<ul>
+{{#allTopics}}
+<tr>
+<td bgcolor="#FFFFFF"><a href="/topics/{{topicID}}">{{topic}}</a><BR></td>
+<td align="center" bgcolor="#FFFFFF">{{votes}}</td>
+<td align="center" bgcolor="#FFFFFF">{{location}}</td>
+<td align="center" bgcolor="#FFFFFF">{{author}}</td>
+<td align="center" bgcolor="#FFFFFF"><form method="POST" action="/topics/{{topicID}}/votes?_method=PUT"> 
+       <center><button type="submit">Vote</button></form></center></td>
+</tr>
+{{/allTopics}}
+</ul>
+
+<tr>
+<td colspan="5" align="right" bgcolor="#E6E6E6"><a href='/topics/new'><strong>Create New Topic</strong> </a></td>
+</tr>
+</table>  
   </ul>
+  <center><a href ="/topics">Back to topics</a></center>
 </body>
 </html>
