@@ -48,7 +48,7 @@ var comments = {
         var parsed = JSON.parse(body)
         var parsedLocation = parsed.region
     
-        db.run("INSERT INTO comments (commentID, entry, author, location, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + parsedLocation + "', " + id + ");")
+        db.run("INSERT INTO comments (commentID, entry, author, location, trackerID, trackTopic) VALUES ( NULL, '" + req.body.entry + "', '" + req.body.author + "', '" + parsedLocation + "', '1', " + id + ");")
         res.redirect("/topics")
       })
   }

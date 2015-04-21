@@ -29,8 +29,9 @@ var topics = {
   },
   getByComments: function (req, res) {
    var template = fs.readFileSync('./views/byComments.html', 'utf8');
-  
-   db.all('SELECT * FROM topics LEFT OUTER JOIN comments WHERE topicID = trackTopic GROUP BY topic ORDER BY entry DESC;', function (err, topics) {
+
+   db.all('SELECT * FROM topics LEFT JOIN comments WHERE topicID = trackTopic GROUP BY topic ORDER BY count(trackerID) DESC;', function (err, topics) {
+    console.log(topics)
      var html = Mustache.render(template, {allTopics: topics});
      res.send(html);
    })
