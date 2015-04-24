@@ -8,6 +8,7 @@ var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'))
+app.use(express.static(__dirname + '/views'));
 
 
 app.get('/', topics.getWelcome); 

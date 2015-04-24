@@ -70,9 +70,11 @@ var topics = {
 
     db.all("SELECT * FROM topics WHERE topicID = " + req.params.id, {}, function (err,topics){
     
+      var topic = topics[0]
+      
       fs.readFile('./views/showTopic.html', 'utf8', function(err, html){
         console.log(topics)
-       var renderedHTML = Mustache.render(html, topics[0])  
+       var renderedHTML = Mustache.render(html, topic)  
         res.send(renderedHTML)
      })
 

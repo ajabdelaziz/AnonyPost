@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link href="./normalize.css" rel="stylesheet">
+   <link href="./dist/semantic.css" rel="stylesheet">
+   <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
   <title>All ze Topics</title>
 </head>
 <body>
-<center><h1 style="color:blue ; font-family:Times New Roman">List of topics to discuss</h1></center>
-  <center> <a href='/topics/comments'>List topics by most comments</a></center>
-
+<div class = "ui grid">
+    <div class="ui inverted black vertical segment">
+      <div class="ui page grid">
+        <div class="column">
+          <h2 class="ui inverted centered header">Anonypost</h2>
+          <img class="ui small centered image" src="https://c1.staticflickr.com/7/6217/6314661375_d89b3be3a4.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+<center><h1 style="font-family: 'Play', sans-serif;">List of topics to discuss</h1></center>
+  <center><div class="ui black button"><a href='/topics/comments'>List topics by most comments</a></div></center>
   
 <table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
 <tr>
@@ -38,11 +50,6 @@
 <td colspan="5" align="right" bgcolor="#E6E6E6"><a href='/topics/new'><strong>Create New Topic</strong> </a></td>
 </tr>
 </table>
-    <!-- {{#allTopics}}
-       <center><li><a href ="/topics/{{topicID}}">{{topic}} - {{votes}} - {{location}} - {{author}}</a></li></center>
-      <form method="POST" action="/topics/{{topicID}}/votes?_method=PUT"> 
-       <center><button type="submit">Vote</button></form></center>
-    {{/allTopics}} -->
  
 </body>
 </html>
