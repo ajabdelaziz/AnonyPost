@@ -2,29 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>All ze Commentz</title>
+   <link href="/semantic.css" rel="stylesheet">
+  <title>Anonypost</title>
 </head>
 <body>
-<table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
-<tr>
-<td width="53%" align="center" bgcolor="#E6E6E6"><strong>Entry</strong></td>
-<td width="15%" align="center" bgcolor="#E6E6E6"><strong>Author</strong></td>
-<td width="13%" align="center" bgcolor="#E6E6E6"><strong>Location</strong></td>
-</tr>
+  <div class = "ui grid centered">
+    <div class="ui inverted black vertical segment">
+      <div class="ui page grid">
+        <div class="column">
+          <h2 class="ui inverted centered header">Anonypost</h2>
+          <img class="ui small centered image" src="http://corsini.com/wp-content/uploads/2014/06/shhhh-feature-feature.png">
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="ui segment">
+  <table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+    <tr>
+      <td width="53%" align="center" bgcolor="#E6E6E6"><strong>Entry</strong></td>
+      <td width="15%" align="center" bgcolor="#E6E6E6"><strong>Author</strong></td>
+      <td width="13%" align="center" bgcolor="#E6E6E6"><strong>Location</strong></td>
+    </tr>
 
-{{#allComments}}
-<ul>
-<tr>
-<td bgcolor="#FFFFFF">{{{entry}}}<BR></td>
-<td align="center" bgcolor="#FFFFFF">{{author}}</td>
-<td align="center" bgcolor="#FFFFFF">{{location}}</td>
-</tr>
-</ul>
-{{/allComments}}
+    {{#allComments}}
+    <ul>
+    <tr>
+      <td bgcolor="#FFFFFF">{{{entry}}}<BR></td>
+      <td align="center" bgcolor="#FFFFFF">{{author}}</td>
+      <td align="center" bgcolor="#FFFFFF">{{location}}</td>
+    </tr>
+  </ul>
+  {{/allComments}}
 
-<tr>
-</tr>
-</table>
-<center><a href ="/topics">Back to topics</a></center>
+  </table>
+  <div class="ui black button" style = "
+      position:relative;
+      left: 579px;"><a href='/topics'>Back to the discussion</a></div>
+</div>
 </body>
 </html>

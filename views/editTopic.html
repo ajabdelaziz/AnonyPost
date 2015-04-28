@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-  <title>Topic by {{author}}</title>
+  <meta charset="UTF-8">
+   <link href="/semantic.css" rel="stylesheet">
+  <title>Anonypost</title>
 </head>
 <body>
-<a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
-<form method="POST" action="/topics/{{topicID}}?_method=PUT">
-<input type="text" name="topic" value="{{topic}}">
-<input type="text" name="location" value="{{location}}">
-<input type="text" name="author" value="{{author}}">
-<button type="submit">Update</button>
-</form>
-<form method="POST" action="/topics/{{topicID}}?_method=DELETE">
-<button type="submit">Delete</button>
+  <div class = "ui grid centered">
+    <div class="ui inverted black vertical segment">
+      <div class="ui page grid">
+        <div class="column">
+          <h2 class="ui inverted centered header">Anonypost</h2>
+          <img class="ui small centered image" src="http://corsini.com/wp-content/uploads/2014/06/shhhh-feature-feature.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <section class="edit">
+      <a href ="/topics/{{topicID}}/comments">{{topic}} - {{votes}} - {{location}} - {{author}}</a>
+      <form method="POST" action="/topics/{{topicID}}?_method=PUT">
+      <input type="text" name="topic" value="{{topic}}">
+      <input type="text" name="location" value="{{location}}">
+      <input type="text" name="author" value="{{author}}">
+      <button type="submit">Update</button>
+      </form>
+      <form method="POST" action="/topics/{{topicID}}?_method=DELETE">
+      <button type="submit">Delete</button>
+    </section>
+  </div>
 </body>
 </html>

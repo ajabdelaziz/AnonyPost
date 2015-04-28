@@ -1,4 +1,36 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+   <link href="/semantic.css" rel="stylesheet">
+  <title>Anonypost</title>
+</head>
+<body>
+  <div class = "ui grid centered">
+    <div class="ui inverted black vertical segment">
+      <div class="ui page grid">
+        <div class="column">
+          <h2 class="ui inverted centered header">Anonypost</h2>
+          <img class="ui small centered image" src="http://corsini.com/wp-content/uploads/2014/06/shhhh-feature-feature.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment">
+    <a href ="/topics/{{topicID}}/comments/{{commentID}}">{{{entry}}} - {{author}} - {{location}}</a>
+    <form method="POST" action="/topics/{{topicID}}comments/{{commentID}}?_method=PUT">
+    <input type="text" name="entry" value="{{entry}}">
+    <input type="text" name="author" value="{{author}}">
+    <input type="text" name="location" value="{{locationr}}">
+    <button type="submit">Update</button>
+    </form>
+    <form method="POST" action="/topics/{{topicID}}/comment/{{commentID}}?_method=DELETE">
+    <button type="submit">Delete</button>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">

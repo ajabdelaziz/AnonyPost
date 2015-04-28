@@ -8,7 +8,7 @@ var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', topics.getWelcome); 
@@ -25,8 +25,6 @@ app.get('/topics/:id/comments', comments.allComments);
 
 app.get('/topics/:id/comments/new', comments.NewComment);
 
-app.get('/topics/:id', topics.getTopicID);
-
 app.post('/topics', topics.postTopic);
 
 app.post('/topics/:id/comments', comments.postComment);
@@ -38,6 +36,8 @@ app.put('/topics/:id/votes/negative', topics.downVoteTopic);
 app.put('/topics/:id', topics.editTopic);
 
 app.delete('/topics/:id', topics.delTopic);
+
+app.get('/topics/:id', topics.getTopicID);
   
 app.listen(3000, function () {
   console.log("LISTENING!");  

@@ -68,8 +68,8 @@ var topics = {
 
   getTopicID: function (req,res) {
 
+    console.log("\n\n\n" + req.params.id + "\n\n\n")
     db.all("SELECT * FROM topics WHERE topicID = " + req.params.id, {}, function (err,topics){
-    
       var topic = topics[0]
       
       fs.readFile('./views/showTopic.html', 'utf8', function(err, html){
